@@ -1,0 +1,172 @@
+﻿//
+// Walk down finding locations
+//
+g.V('1').emit().until(not(in('parent'))).repeat(in('parent')).hasLabel('LocationNode').valueMap(true).select('id', 'name').fold()
+[
+  {
+    "id": "17",
+    "name": [
+      "Location111"
+    ]
+  },
+  {
+    "id": "19",
+    "name": [
+      "Location2211"
+    ]
+  }
+]
+
+
+//
+// BREADCRUMB BUILDING/TRAVERSAL
+//
+
+g.V('15').emit().until(not(out('parent'))).repeat(out('parent')).valueMap(true).select('id', 'name').fold()
+[
+  {
+    "id": "15",
+    "name": [
+      "Folder221"
+    ]
+  },
+  {
+    "id": "13",
+    "name": [
+      "Folder22"
+    ]
+  },
+  {
+    "id": "9",
+    "name": [
+      "Folder2"
+    ]
+  },
+  {
+    "id": "1",
+    "name": [
+      "Root"
+    ]
+  }
+]
+
+//
+// DELETE
+//
+
+g.V().drop()
+g.V('1','3').drop()
+// Note: No need to delete edges between verticies.
+g.V('1','3').as('verticies').or(bothE().drop(), drop())
+
+//
+// CREATE
+//
+
+g.addV('FolderNode').as('root').property('id', '1').property('name', 'Root').property('booly', true).property('numby', 0)
+.addV('FolderNode').as('child').property('id', '3').property('name', 'Folder1').property('booly', false).property('numby', 1)
+.addE('parent').to(g.V('1')).as('link').property('id', '4').property('name', 'symmy')
+.select('root').valueMap(true).as('rootValues')
+.select('child').valueMap(true).as('childValues')
+.select('link').valueMap(true).as('linkValues')
+.select('rootValues','childValues','linkValues')
+{
+  "rootValues": {
+    "id": "1",
+    "label": "FolderNode",
+    "name": [
+      "Root"
+    ],
+    "booly": [
+      true
+    ],
+    "numby": [
+      0
+    ]
+  },
+  "childValues": {
+    "id": "3",
+    "label": "FolderNode",
+    "name": [
+      "Folder1"
+    ],
+    "booly": [
+      false
+    ],
+    "numby": [
+      1
+    ]
+  },
+  "linkValues": {
+    "id": "4",
+    "label": "parent",
+    "name": "symmy"
+  }
+}
+
+//
+// DELETE PROPERTIES
+//
+
+g.V('3').as('child')
+.or(properties('numby', 'name').drop(), select('child'))
+.valueMap(true)
+{
+  "id": "3",
+  "label": "FolderNode",
+  "booly": [
+    false
+  ]
+}
+
+//
+// SET PROPERTY
+//
+
+g.V('3').as('child')
+.property('booly', true)
+.select('child')
+.valueMap(true)
+{
+  "id": "3",
+  "label": "FolderNode",
+  "name": [
+    "Folder1"
+  ],
+  "booly": [
+    true
+  ],
+  "numby": [
+    1
+  ]
+}
+
+//
+// SELECT REDUCED SET OF PROPERTIES FROM TWO VERTICIES
+//
+
+g.V('3').as('child1')
+.out('parent').as('root1')
+.select('root1').valueMap(true).select('id','numby','name').as('root')
+.select('child1').valueMap(true).select('id','name','booly').as('child')
+.select('root','child')
+{
+  "root": {
+    "id": "1",
+    "numby": [
+      0
+    ],
+    "name": [
+      "Root"
+    ]
+  },
+  "child": {
+    "id": "3",
+    "name": [
+      "Folder1"
+    ],
+    "booly": [
+      false
+    ]
+  }
+}

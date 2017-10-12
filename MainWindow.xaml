@@ -1,0 +1,24 @@
+﻿<Window x:Class="Piddle.CosmosDbGraphApiWpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Piddle.CosmosDbGraphApiWpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="527" Width="1357">
+    <Grid>
+        <Button Content="Connect" Name="Connect" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="127" Height="37" Click="Connect_Click"/>
+        <Button Content="Create DB" Name="CreateDb" HorizontalAlignment="Left" Margin="274,10,0,0" VerticalAlignment="Top" Width="127" Height="37" Click="CreateDb_Click" RenderTransformOrigin="0.512,-0.649"/>
+        <Button Content="Delete DB" Name="DeleteDb" HorizontalAlignment="Left" Margin="406,10,0,0" VerticalAlignment="Top" Width="127" Height="37" Click="DeleteDb_Click" RenderTransformOrigin="0.504,-0.676"/>
+        <Button Content="Create Graph" Name="CreateGraph" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="127" Height="37" Click="CreateGraph_Click" RenderTransformOrigin="0.764,-0.973"/>
+        <Button Content="Delete Graph" Name="DeleteGraph" HorizontalAlignment="Left" Margin="142,52,0,0" VerticalAlignment="Top" Width="127" Height="37" Click="DeleteGraph_Click" RenderTransformOrigin="0.331,0.432"/>
+        <Button Content="Create Tree" Name="CreateTree" HorizontalAlignment="Left" Margin="274,52,0,0" VerticalAlignment="Top" Width="127" Height="37" Click="CreateTree_Click"/>
+        <Button Content="Walk Locations" Name="WalkDownTree" HorizontalAlignment="Left" Margin="142,94,0,0" VerticalAlignment="Top" Width="127" Height="37" Click="WalkDownTree_Click"/>
+        <Button Content="Walk Breadcrumb" Name="WalkUpFromFolder221" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="127" Height="37" Click="WalkUpFromFolder221_Click" RenderTransformOrigin="0.457,0.081"/>
+        <Button Content="Disconnect" Name="Disconnect" HorizontalAlignment="Left" Margin="142,10,0,0" VerticalAlignment="Top" Width="127" Height="37" Click="Disconnect_Click"/>
+        <TextBox Name="Query" HorizontalAlignment="Left" Height="147" Margin="10,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="523" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+        <Button Content="Run Query" Name="RunQuery" HorizontalAlignment="Left" Margin="210,327,0,0" VerticalAlignment="Top" Width="127" Height="37" Click="RunQuery_Click" RenderTransformOrigin="0.244,4.811"/>
+        <TextBox Name="Output" HorizontalAlignment="Left" Height="476" Margin="538,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="801" AcceptsReturn="True" UndoLimit="0" VerticalScrollBarVisibility="Visible"/>
+        <Button Content="Delete Tree" Name="DeleteTree" HorizontalAlignment="Left" Margin="406,52,0,0" VerticalAlignment="Top" Width="127" Height="37" Click="DeleteTree_Click"/>
+    </Grid>
+</Window>
