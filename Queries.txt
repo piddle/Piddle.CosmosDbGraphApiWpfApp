@@ -170,3 +170,16 @@ g.V('3').as('child1')
     ]
   }
 }
+
+//
+// STORE WALK RESULTS (IT COULD BE A DEAD END), GO BACK TO THE START, RETURN RESULTS TOGETHER
+//
+
+g.V('15').as('start')
+.valueMap(true).select('label', 'id', 'name').as('start-fields')
+.select('start')
+.or(
+    emit().until(not(out('parent'))).repeat(out('parent'))
+      .valueMap(true).select('label', 'id', 'name').aggregate('walk-fields'),
+    select())
+.select('start-fields', 'walk-fields')
